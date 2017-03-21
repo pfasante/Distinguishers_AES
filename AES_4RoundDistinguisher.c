@@ -91,7 +91,8 @@ int subspaceTest(word8 key[4][4])
                 }
             }
 
-            numero = numero + belongToW(p1);
+            if (belongToM(p1) == 1)
+                numero++;
         }
     }
 
@@ -175,7 +176,8 @@ int randomTest(word8 key[][4])
                 }
             }
 
-            numero = numero + belongToW(p1);
+            if (belongToM(p1) == 1)
+                numero++;
         }
     }
 
@@ -194,10 +196,10 @@ int main()
 {
     //Secret key
     word8 key[4][4] = {
-        0x00, 0x44, 0x88, 0xcc,
-        0x11, 0x55, 0x99, 0xdd,
-        0x22, 0x66, 0xaa, 0xee,
-        0x33, 0x77, 0xbb, 0xff
+        {0x00, 0x44, 0x88, 0xcc},
+        {0x11, 0x55, 0x99, 0xdd},
+        {0x22, 0x66, 0xaa, 0xee},
+        {0x33, 0x77, 0xbb, 0xff}
     };
 
     int numero = 0, numero2 = 0;
@@ -225,4 +227,3 @@ int main()
 
     return 0;
 }
-

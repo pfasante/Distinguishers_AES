@@ -21,7 +21,7 @@ word8 randomByte(){
 /**The function generates the number of texts (IN THE SAME COSET OF D) chosen by the parameter NUMBER_CP.
 Then, for each possible pairs it counts the number of pairs of texts that belong to the same coset of M.*/
 
-int subspaceTest(word8 key[][4])
+int subspaceTest(word8 key[4][4])
 {
     int i, j, l, k, flag, flag2;
     int numero = 0;
@@ -91,7 +91,8 @@ int subspaceTest(word8 key[][4])
                 }
             }
 
-            numero = numero + belongToW(p1);
+            if (belongToM(p1) == 1)
+                numero++;
         }
     }
 
@@ -102,7 +103,7 @@ int subspaceTest(word8 key[][4])
 /**The function generates the random texts (the number is chosen by the parameter NUMBER_CP), which correspond to the ciphertexts.
 Then, for each possible pairs it counts the number of pairs of texts that belong to the same coset of M.*/
 
-int randomTest(word8 key[][4])
+int randomTest(word8 key[4][4])
 {
     int i, j, l, k, flag, t1, t2, flag2;
     int numero = 0;
@@ -175,7 +176,8 @@ int randomTest(word8 key[][4])
                 }
             }
 
-            numero = numero + belongToW(p1);
+            if (belongToM(p1) == 1)
+                numero++;
         }
     }
 
@@ -191,10 +193,10 @@ int main()
 {
     //Secret key
     word8 key[4][4] = {
-        0x00, 0x44, 0x88, 0xcc,
-        0x11, 0x55, 0x99, 0xdd,
-        0x22, 0x66, 0xaa, 0xee,
-        0x33, 0x77, 0xbb, 0xff
+        {0x00, 0x44, 0x88, 0xcc},
+        {0x11, 0x55, 0x99, 0xdd},
+        {0x22, 0x66, 0xaa, 0xee},
+        {0x33, 0x77, 0xbb, 0xff}
     };
 
     unsigned long int i;
@@ -258,4 +260,3 @@ int main()
 
     return (0);
 }
-

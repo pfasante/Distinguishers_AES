@@ -217,7 +217,7 @@ In this last cast, it prints the possible right key.*/
 
 int contNumberCollisionAES(word8 k1, word8 k2, word8 k3, word8 k4, word8 key[4][4])
 {
-    int i, j, numberCollision, t, s;
+    int i, j, t, s;
     word8 storeMemory[16][4], v[4], temp[16], temp2[16], temp3[4][4];
 
     long int k;
@@ -289,11 +289,8 @@ int contNumberCollisionAES(word8 k1, word8 k2, word8 k3, word8 k4, word8 key[4][
                     }
                 }
 
-                numberCollision = belongToW(temp3);
-
-                if(numberCollision > 0)
+                if (belongToM(temp3) == 1)
                     return 1;
-
             }
         }
     }
@@ -315,7 +312,7 @@ int contNumberCollisionRandom()
 
     long int i;
 
-    int l, k, j, t, s, numberCollision;
+    int l, k, j, t, s;
     int flag2, flag;
 
     for(i=0; i<N_TEST; i++)
@@ -375,11 +372,8 @@ int contNumberCollisionRandom()
                     }
                 }
 
-                numberCollision = belongToW(temp3);
-
-                if(numberCollision > 0)
+                if (belongToM(temp3) == 1)
                     return 1;
-
             }
         }
     }
@@ -448,10 +442,10 @@ int distinguisher5Rounds(word8 key[][4], int var)
 int main()
 {
     word8 key[4][4] = {
-        0x0, 0x4, 0x8, 0xc,
-        0x1, 0x5, 0x9, 0xd,
-        0x2, 0x6, 0xa, 0xe,
-        0x3, 0x7, 0xb, 0xf
+        {0x0, 0x4, 0x8, 0xc},
+        {0x1, 0x5, 0x9, 0xd},
+        {0x2, 0x6, 0xa, 0xe},
+        {0x3, 0x7, 0xb, 0xf}
     };
 
     int j, k, result;
